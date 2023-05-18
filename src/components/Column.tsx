@@ -2,6 +2,7 @@ import { ColumnContainer, ColumnTitle } from "../styles";
 import { AddNewItem } from "./AddNewItem";
 import { Card } from "./Card";
 import { useAppState } from "../context/AppStateContext";
+import { addTask } from "../context/actions";
 
 type ColumnProps = {
   text: string;
@@ -9,7 +10,7 @@ type ColumnProps = {
 };
 
 export const Column = ({ text, id }: ColumnProps) => {
-  const { getTasksByListId } = useAppState();
+  const { getTasksByListId, dispatch } = useAppState();
   const task = getTasksByListId(id);
   return (
     <ColumnContainer>
@@ -21,7 +22,7 @@ export const Column = ({ text, id }: ColumnProps) => {
       }
       <AddNewItem
         toggleButtonText="+ Add Another Card"
-        onAdd={() => console.log("New item added")}
+        onAdd={(text) => dispatch(addTask(text, id))}
         dark
       />
     </ColumnContainer>
