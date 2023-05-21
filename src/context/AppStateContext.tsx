@@ -37,7 +37,7 @@ const AppStateContext = createContext<AppStateContextProps>(
   {} as AppStateContextProps
 );
 
-export const AppStateProvider = ({ children }: AppStateContextProps): JSX.Element => {
+export const AppStateProvider = ({ children }: AppStateContextProps) => {
   const [state, dispatch] = useImmerReducer(appStateReducer, appData);
   const { lists, draggedItem } = state;
 
